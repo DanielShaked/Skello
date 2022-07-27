@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Actions
@@ -60,6 +60,7 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
             case 'add':
                 setModalType({ header: 'Create label', type: 'add' })
                 break
+            default: return
         }
     }
 
@@ -250,8 +251,8 @@ export function LabelsModalContent({ board, group, task, toggleModal }) {
                                     }}>
                                         {/* {isBlindMode && } */}
                                         {isBlindMode && <div>
-                                            <img className='blind-color-sign-expended-svg' src={getColorBlindSignByColor(label.color)} />
-                                            <img className='blind-color-sign-expended-svg' style={{ top: '16px' }} src={getColorBlindSignByColor(label.color)} />
+                                            <img className='blind-color-sign-expended-svg' src={getColorBlindSignByColor(label.color)} alt={'blind-color'} />
+                                            <img className='blind-color-sign-expended-svg' style={{ top: '16px' }} src={getColorBlindSignByColor(label.color)} alt={'blind-color'} />
                                         </div>}
                                         {label.title}
                                         {task.labelIds?.includes(label.id) && <BsCheckLg className='checked-label-icon' />}

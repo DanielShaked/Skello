@@ -6,13 +6,12 @@ import { AiOutlineTags, AiOutlineCheckSquare, AiOutlineFieldTime, AiOutlineCopy 
 import { IoPersonOutline } from "react-icons/io5";
 import { BsPersonPlus, BsArrowRight, BsArchive, BsSquareHalf } from "react-icons/bs";
 import { MdOutlineAttachment } from "react-icons/md";
-import { BiMicrophone } from "react-icons/bi";
 
 // Cmps
 import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 
 // Action
-import { updateTask, onSaveBoard } from '../../store/board/board.action';
+import { onSaveBoard } from '../../store/board/board.action';
 
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
@@ -71,9 +70,6 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'checklist' })
                     }} > <AiOutlineCheckSquare /> Checklist</button>
-                    {/* <button className="button-link archive-secondary-btn" onClick={(event) => {
-                        toggleModal({ event, type: 'checklist' })
-                    }} > <BsArchive /> Archive</button> */}
                 </div>
                 <div className="middle-button-section sidebar-primary-btns-container">
                     <button className="button-link" onClick={(event) => {
@@ -82,9 +78,6 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'attachment' })
                     }} > <MdOutlineAttachment />Attachment</button>
-                    {/* <button className="button-link" onClick={(event) => {
-                        toggleModal({ event, type: 'stt' })
-                    }} > <BiMicrophone />Speech To Text</button> */}
                     <button className="button-link cover-sidebar-btn" onClick={(event) => {
                         toggleModal({ event, type: 'cover' })
                     }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>

@@ -12,14 +12,16 @@ import { ProfileModalContent } from './ProfileModalContent.jsx'
 import { SpeechToTextModalContent } from './SpeechToTextMoadlContent.jsx';
 import { CreateBoardContent } from './CreateBoardContent.jsx';
 import { CopyTaskModalContent } from './CopyTaskModalContent.jsx';
+
+
 export function DynamicActionModal({ isMove, isDeleteModal = false ,toggleModal, type, task, isDetails = false, onRemoveGroup, groupId, group, board, event, posXAddition = 0, posYAddition = 0, onRemoveTodo, editTitle, attachmentTitle, todoId, isOnDetails = true }) {
     const wrapperRef = useRef(null)
 
     const [width, setWidth] = useState(window.innerWidth);
-    const [height, setHeight] = useState(window.innerHeight);
+    // const [height, setHeight] = useState(window.innerHeight);
     const updateDimensions = () => {
         setWidth(window.innerWidth);
-        setHeight(window.innerHeight);
+        // setHeight(window.innerHeight);
     }
     useEffect(() => {
         window.addEventListener("resize", updateDimensions);
@@ -54,7 +56,7 @@ export function DynamicActionModal({ isMove, isDeleteModal = false ,toggleModal,
             //     return <CopyTaskModalContent onToggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
             case 'copy':
                 return <CopyTaskModalContent isMove={isMove} toggleModal={toggleModal} posXAddition={posXAddition} posYAddition={posYAddition} task={task} group={group} board={board} type={type} />
-
+            default: return
         }
     }
     const getModalPositionStyle = () => {
