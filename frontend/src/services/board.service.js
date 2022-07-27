@@ -29,7 +29,7 @@ async function query() {
 
 // Img
 async function queryImages(query) {
-    if (!query) query = 'random'
+    if (!query) query = 'random';
     const photos = await axios.get(
         `https://api.unsplash.com/search/photos/?query=${query}&client_id=${API_KEY_UNSPLASH}`
     );
@@ -45,19 +45,20 @@ async function getById(boardId) {
     }
 }
 
-async function update(board) {
+async function updateWithoutSocket(board) {
     try {
         await httpService.put('board', board);
-        socketService.emit('board-change', board);
         return board;
     } catch (err) {
         console.log('Cannot update board', err);
     }
 }
 
-async function updateWithoutSocket(board) {
+
+async function update(board) {
     try {
         await httpService.put('board', board);
+        socketService.emit('board-change', board);
         return board;
     } catch (err) {
         console.log('Cannot update board', err);
@@ -112,7 +113,7 @@ async function add(title, style) {
                 color: '#0079bf',
             },
         ],
-        members: [{...loggedUser }],
+        members: [{ ...loggedUser }],
         groups: [],
         activities: [],
     };
