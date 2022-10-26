@@ -88,7 +88,6 @@ export function TaskAdditionsShow({ board, group, task }) {
             const label = getLabelById(labelId)
             return label
         })
-        // Why do I get undefined in one of them? The Details update happen later on after I activate this cmp, for some reason.
         labels = labels.filter(label => (label))
         setTaskLabels(labels)
     }

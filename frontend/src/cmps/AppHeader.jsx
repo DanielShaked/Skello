@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import { NavLink, Link } from 'react-router-dom';
-import { AiFillHome, AiOutlineDown } from 'react-icons/ai';
+import { useLocation, NavLink, Link } from 'react-router-dom';
+import { AiFillHome } from 'react-icons/ai';
 import { ImTrello } from 'react-icons/im';
 
 // Services
 import { userService } from '../services/user.service';
-
 
 // Actions
 import { loadUsers, setUser } from '../store/user/user.actions.js';
@@ -27,13 +25,11 @@ export function AppHeader() {
     getLoggedInUser()
     dispatch(loadUsers())
     onLoadBoards()
-
   }, [])
 
   const onLoadBoards = async () => {
     await dispatch(loadBoards());
   }
-
 
   const getLoggedInUser = async () => {
     const loggedInUser = userService.getLoggedinUser() || await userService.loginAsGuest()
@@ -48,7 +44,6 @@ export function AppHeader() {
     dispatch(toggleModal({ event: ev, type: 'profile', posYAddition: 20, isShown: !isModalOpen }));
   }
 
-
   const getAvatarByUser = () => {
     return { background: `url(${user?.imgUrl}) center center / cover` };
   };
@@ -56,8 +51,6 @@ export function AppHeader() {
   const isHome = location.pathname === '/';
   const isLoginSignup = location.pathname === '/login' || location.pathname === '/signup' ? true : false;
   const isBoard = location.pathname.includes('board');
-
-
 
   if (!user) return <></>
 
@@ -75,21 +68,12 @@ export function AppHeader() {
           <ImTrello className="trello-icon" />
           <p className="logo">Skello</p>
         </NavLink>
-        <button className={`app-header-primary-btn `} onClick={(ev) => {
-          onClickBoards(ev)
-        }}>
-          Boards
-          <AiOutlineDown className='dropdown-icon' />
-        </button>
       </section>
 
-
       {/* STT */}
-      <SkellMicAssistant />
+      {/* <SkellMicAssistant /> */}
 
       {/* HOME */}
-
-
       {(user && user.fullname !== 'Guest' && isHome) && (
         <section className="login-signup-container">
           <Link to={'/signup'}>
@@ -97,7 +81,7 @@ export function AppHeader() {
           </Link>
         </section>
       )}
-      {(!user || user.fullname === 'Guest' && isHome) && (
+      {((!user || user.fullname === 'Guest') && isHome) && (
         <section className="login-signup-container">
           <Link to={'/login'}>
             <button className="login-btn">Log in</button>

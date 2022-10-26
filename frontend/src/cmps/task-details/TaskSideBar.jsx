@@ -16,7 +16,6 @@ import { DynamicActionModal } from '../dynamic-actions/DynamicActionModal.jsx'
 // Action
 import { onSaveBoard } from '../../store/board/board.action';
 
-
 export function TaskSideBar({ task, group, board }) {
     const dispatch = useDispatch()
     const history = useHistory();
@@ -101,7 +100,6 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'checklist' })
                     }} > <AiOutlineCheckSquare /> Checklist</button>
-
                 </div>
 
                 <div className="middle-button-section sidebar-primary-btns-container">
@@ -111,7 +109,6 @@ export function TaskSideBar({ task, group, board }) {
                     <button className="button-link" onClick={(event) => {
                         toggleModal({ event, type: 'attachment' })
                     }} > <MdOutlineAttachment />Attachment</button>
-
                     <button className="button-link cover-sidebar-btn" onClick={(event) => {
                         toggleModal({ event, type: 'cover' })
                     }} > <BsSquareHalf style={{ transform: `rotate(270deg)`, height: '10px' }} />Cover</button>
